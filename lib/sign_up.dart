@@ -22,6 +22,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
   }
 
+//user validation check
+  String? _validateUser(value) {
+    if (value!.isEmpty) {
+      return 'Please enter a username';
+    }
+    return null;
+  }
+
+  //Email validation check
   String? _validateEmail(value) {
     if (value!.isEmpty) {
       return 'Please enter an email';
@@ -33,6 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return null;
   }
 
+//Phone validation check
   String? _validatePhoneNumber(value) {
     if (value!.isEmpty) {
       return 'Please enter Your phone number';
@@ -63,17 +73,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter a username';
-                  }
-                  return null;
-                },
+                validator: _validateUser,
               ),
               const SizedBox(
                 height: 10,
               ),
               TextFormField(
+                keyboardType: TextInputType.emailAddress,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: InputDecoration(
                   labelText: 'Email',
@@ -87,6 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 10,
               ),
               TextFormField(
+                keyboardType: TextInputType.phone,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: InputDecoration(
                   labelText: 'phone',
