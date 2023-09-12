@@ -42,6 +42,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return null;
   }
 
+  //Password validation check
+  String? _validatePassword(value) {
+    if (value!.isEmpty) {
+      return 'Please enter Your Password';
+    }
+
+    return null;
+  }
+
 //Phone validation check
   String? _validatePhoneNumber(value) {
     if (value!.isEmpty) {
@@ -67,12 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             children: [
               TextFormField(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                decoration: InputDecoration(
-                  labelText: 'UserName',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+                decoration: _buildInputDecoration("Username", Icons.person),
                 validator: _validateUser,
               ),
               const SizedBox(
@@ -81,13 +85,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+                decoration: _buildInputDecoration("Email", Icons.email),
+                //  InputDecoration(
+                //   labelText: 'Email',
+                //   border: OutlineInputBorder(
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                // ),
                 validator: _validateEmail,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                decoration: _buildInputDecoration("Password", Icons.lock),
+                validator: _validatePassword,
               ),
               const SizedBox(
                 height: 10,
@@ -95,12 +109,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextFormField(
                 keyboardType: TextInputType.phone,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                decoration: InputDecoration(
-                  labelText: 'phone',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+                decoration: _buildInputDecoration("Phone Number", Icons.phone),
+                // InputDecoration(
+                //   labelText: 'phone',
+                //   border: OutlineInputBorder(
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                // ),
                 validator: _validatePhoneNumber,
               ),
               const SizedBox(
@@ -117,6 +132,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  InputDecoration _buildInputDecoration(String label, IconData suffixIcon) {
+    return InputDecoration(
+      labelText: label,
+      suffixIcon: Icon(suffixIcon),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }
