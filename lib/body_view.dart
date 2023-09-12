@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone_app/home_view.dart';
 import 'package:instagram_clone_app/nav_bar.dart';
 
 class Bodyview extends StatefulWidget {
@@ -11,11 +12,7 @@ class Bodyview extends StatefulWidget {
 class _BodyviewState extends State<Bodyview> {
   int currentIndex = 0;
   var pageViewList = [
-    Container(
-      color: Colors.red,
-      alignment: Alignment.center,
-      child: const Text('Page 1'),
-    ),
+    const HomeViewScreen(),
     Container(
       color: Colors.yellow,
       alignment: Alignment.center,
@@ -36,7 +33,6 @@ class _BodyviewState extends State<Bodyview> {
       alignment: Alignment.center,
       child: const Text('Page 5'),
     ),
-  
   ];
   @override
   Widget build(BuildContext context) {
