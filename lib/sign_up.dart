@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone_app/login_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -157,11 +158,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 40,
               ),
-              const Text(
-                'Login',
-                style: TextStyle(
-                  color: Color(0xFFA66703),
-                  fontSize: 24,
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LogInScreen(),
+                      ));
+                },
+                child: const Text(
+                  'Login',
+                  style: TextStyle(
+                    color: Color(0xFFA66703),
+                    fontSize: 24,
+                  ),
                 ),
               )
             ],
