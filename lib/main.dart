@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone_app/onbordaring.dart';
+import 'package:instagram_clone_app/body_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,10 +11,31 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData.dark().copyWith(
+        navigationBarTheme: NavigationBarThemeData(
+          backgroundColor: Colors.black,
+          indicatorColor: const Color(0xFFA47C04),
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          labelTextStyle: MaterialStateProperty.resolveWith(
+            (states) => states.contains(MaterialState.selected)
+                ? const TextStyle(
+                    color: Color(0xFFA47C04),
+                  )
+                : const TextStyle(),
+          ),
+          // iconTheme: MaterialStateProperty.resolveWith(
+          //   (states) => states.contains(MaterialState.selected)
+          //       ? const IconThemeData(
+          //           size: 30,
+          //         )
+          //       : const IconThemeData(),
+          // ),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       // home: OnBordaring(),
-      home: OnBordaring(),
+      home: const Bodyview(),
     );
   }
 }
