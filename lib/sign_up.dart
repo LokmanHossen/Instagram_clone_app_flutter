@@ -65,7 +65,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF252634),
+      resizeToAvoidBottomInset: false,
+      backgroundColor: const Color(0xFF252634),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone_app/sign_up.dart';
 
 class OnBordaring extends StatefulWidget {
   const OnBordaring({super.key});
@@ -62,9 +63,22 @@ class _OnBordaringState extends State<OnBordaring> {
               width: 100,
               child: ElevatedButton(
                 onPressed: () {
-                  _pageController.nextPage(
+                  if (_currentPage == 2) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SignUpScreen(),
+                      ),
+                    );
+                  } else {
+                    _pageController.nextPage(
                       duration: const Duration(microseconds: 500),
-                      curve: Curves.ease);
+                      curve: Curves.ease,
+                    );
+                  }
+                  // _pageController.nextPage(
+                  //     duration: const Duration(microseconds: 500),
+                  //     curve: Curves.ease);
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
