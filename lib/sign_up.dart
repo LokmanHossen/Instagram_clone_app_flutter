@@ -65,17 +65,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SignUp Form'),
-      ),
+      backgroundColor: Color(0xFF252634),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
+              const SizedBox(
+                height: 80,
+              ),
+              const SizedBox(
+                width: 150,
+                child: Text(
+                  'Create New account',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
               TextFormField(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
+                style: const TextStyle(color: Colors.white),
                 decoration: _buildInputDecoration("Username", Icons.person),
                 validator: _validateUser,
               ),
@@ -85,6 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
+                style: const TextStyle(color: Colors.white),
                 decoration: _buildInputDecoration("Email", Icons.email),
                 //  InputDecoration(
                 //   labelText: 'Email',
@@ -100,6 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
+                style: const TextStyle(color: Colors.white),
                 decoration: _buildInputDecoration("Password", Icons.lock),
                 validator: _validatePassword,
               ),
@@ -109,6 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextFormField(
                 keyboardType: TextInputType.phone,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
+                style: const TextStyle(color: Colors.white),
                 decoration: _buildInputDecoration("Phone Number", Icons.phone),
                 // InputDecoration(
                 //   labelText: 'phone',
@@ -119,16 +139,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 validator: _validatePhoneNumber,
               ),
               const SizedBox(
-                height: 15,
+                height: 40,
               ),
               SizedBox(
                 height: 50,
                 width: double.infinity,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFA66703),
+                    textStyle: const TextStyle(fontSize: 24),
+                  ),
                   onPressed: _submitForm,
-                  child: const Text('Submit'),
+                  child: const Text('Create'),
                 ),
               ),
+              const SizedBox(
+                height: 40,
+              ),
+              const Text(
+                'Login',
+                style: TextStyle(
+                  color: Color(0xFFA66703),
+                  fontSize: 24,
+                ),
+              )
             ],
           ),
         ),
@@ -138,8 +172,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   InputDecoration _buildInputDecoration(String label, IconData suffixIcon) {
     return InputDecoration(
+      fillColor: const Color(0xAA494A59),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Color(0x35949494),
+        ),
+      ),
+      filled: true,
+      labelStyle: const TextStyle(
+        color: Color(0xFF949494),
+      ),
       labelText: label,
-      suffixIcon: Icon(suffixIcon),
+      suffixIcon: Icon(
+        suffixIcon,
+        color: const Color(0xFF949494),
+      ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
       ),
