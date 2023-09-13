@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_app/home_view.dart';
 import 'package:instagram_clone_app/nav_bar.dart';
-import 'package:instagram_clone_app/profile/widget/profile_view.dart';
+import 'package:instagram_clone_app/profile/profile_view.dart';
 
 class Bodyview extends StatefulWidget {
   const Bodyview({super.key});
