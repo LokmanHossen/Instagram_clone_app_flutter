@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_app/home_view.dart';
 import 'package:instagram_clone_app/nav_bar.dart';
+import 'package:instagram_clone_app/profile/widget/profile_view.dart';
 
 class Bodyview extends StatefulWidget {
   const Bodyview({super.key});
@@ -28,11 +29,7 @@ class _BodyviewState extends State<Bodyview> {
       alignment: Alignment.center,
       child: const Text('Page 4'),
     ),
-    Container(
-      color: Colors.blue,
-      alignment: Alignment.center,
-      child: const Text('Page 5'),
-    ),
+    const ProfileView(),
   ];
   @override
   Widget build(BuildContext context) {
