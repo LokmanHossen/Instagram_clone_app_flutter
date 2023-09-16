@@ -3,6 +3,7 @@ import 'package:instagram_clone_app/home_view.dart';
 import 'package:instagram_clone_app/nav_bar.dart';
 import 'package:instagram_clone_app/profile/profile_view.dart';
 import 'package:instagram_clone_app/search/search_view.dart';
+import 'package:instagram_clone_app/upload_photo/post_view.dart';
 
 class Bodyview extends StatefulWidget {
   const Bodyview({super.key});
@@ -16,11 +17,7 @@ class _BodyviewState extends State<Bodyview> {
   var pageViewList = [
     const HomeViewScreen(),
     SearchPage(),
-    Container(
-      color: Colors.amber,
-      alignment: Alignment.center,
-      child: const Text('Page 3'),
-    ),
+    PostView(),
     Container(
       color: Colors.grey,
       alignment: Alignment.center,
