@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone_app/home_view.dart';
 import 'package:instagram_clone_app/nav_bar.dart';
 import 'package:instagram_clone_app/profile/profile_view.dart';
+import 'package:instagram_clone_app/search/search_view.dart';
 
 class Bodyview extends StatefulWidget {
   const Bodyview({super.key});
@@ -14,11 +15,7 @@ class _BodyviewState extends State<Bodyview> {
   int currentIndex = 0;
   var pageViewList = [
     const HomeViewScreen(),
-    Container(
-      color: Colors.yellow,
-      alignment: Alignment.center,
-      child: const Text('Page 2'),
-    ),
+    SearchPage(),
     Container(
       color: Colors.amber,
       alignment: Alignment.center,
