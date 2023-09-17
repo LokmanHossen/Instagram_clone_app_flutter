@@ -30,11 +30,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  image_picker: ^1.0.4
+  # video_compress:
+  #   git:
+  #     url: https://github.com/SpectoraSoftware/VideoCompress
+  #     ref: caf41183e84adebd6ef5c8fba547937daf556a65 # Or master?
+
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  video_compress: ^3.1.2
 
 dev_dependencies:
   flutter_test:
