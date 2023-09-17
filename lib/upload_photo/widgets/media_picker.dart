@@ -7,16 +7,17 @@ class MediaPicker {
   final ImagePicker picker = ImagePicker();
 
   Future<List<Map<String, dynamic>>> pickImage() async {
-    final PickedFiles = await picker.pickMultiImage();
-    if (PickedFiles != null) {
+    final pickedFiles = await picker.pickMultiImage();
+    if (pickedFiles != null) {
       final mediaJsonList = <Map<String, dynamic>>[];
-      for (var pickedFile in PickedFiles) {
+      for (var pickedFile in pickedFiles) {
         final id = DateTime.now().microsecondsSinceEpoch.toString();
 
         final mediaJson = {
           'id': id,
           'mediaFile': File(pickedFile.path).path,
-          'mediatype': "image",
+          'thumbnailFile': File(pickedFile.path).path,
+          'mediaType': "image"
         };
         mediaJsonList.add(mediaJson);
       }
@@ -27,15 +28,15 @@ class MediaPicker {
   }
 
   takePicture() async {
-    final PickedFile = await picker.pickImage(source: ImageSource.camera);
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
-    if (PickedFile != null) {
+    if (pickedFile != null) {
       final id = DateTime.now().microsecondsSinceEpoch.toString();
       final mediaJson = {
         'id': id,
-        'mediaFile': File(PickedFile.path).path,
-        'thumbnailFile': File(PickedFile.path).path,
-        'mediaType': "image",
+        'mediaFile': File(pickedFile.path).path,
+        'thumbnailFile': File(pickedFile.path).path,
+        'mediaType': "image"
       };
       return mediaJson;
     } else {
@@ -44,16 +45,16 @@ class MediaPicker {
   }
 
   videoPick() async {
-    final PickedFile = await picker.pickVideo(source: ImageSource.gallery);
+    final pickedFile = await picker.pickVideo(source: ImageSource.gallery);
 
-    if (PickedFile != null) {
-      final thumbnailFile = await _getThumbnail(File(PickedFile.path));
+    if (pickedFile != null) {
+      final thumbnailFile = await _getThumbnail(File(pickedFile.path));
       final id = DateTime.now().microsecondsSinceEpoch.toString();
       final mediaJson = {
         'id': id,
-        'mediaFile': File(PickedFile.path).path,
+        'mediaFile': File(pickedFile.path).path,
         'thumbnailFile': thumbnailFile.path,
-        'mediaType': "video",
+        'mediaType': "video"
       };
       return mediaJson;
     } else {
@@ -62,11 +63,10 @@ class MediaPicker {
   }
 
   Future<File> _getThumbnail(File mediaFile) async {
-    final thumbnailFile = await VideoCompress.getFileThumbnail(
-      mediaFile.path,
-      quality: 50,
-      position: -1,
-    );
+    final thumbnailFile = await VideoCompress.getFileThumbnail(mediaFile.path,
+        quality: 50, // default(100)
+        position: -1 // default(-1)
+        );
     return thumbnailFile;
   }
 }
