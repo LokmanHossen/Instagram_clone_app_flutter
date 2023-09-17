@@ -44,12 +44,20 @@ class _PostViewState extends State<PostView> {
     Navigator.pop(context);
   }
 
+  removeMedia(index) {
+    setState(() {
+      _mediaFiles.removeAt(index - 1);
+    });
+    Navigator.pop(context);
+  }
+
   // var mediaBottomSheet = MediaBottomSheet();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      floatingActionButton: ElevatedButton(onPressed: (){}, child: Text("Post")),
+      floatingActionButton:
+          ElevatedButton(onPressed: () {}, child: Text("Post")),
       appBar: AppBar(
         title: const Text('Upload'),
       ),
@@ -118,22 +126,32 @@ class _PostViewState extends State<PostView> {
               var mediaFile = _mediaFiles[index - 1];
               var thumbnailFile = File(mediaFile['thumbnailFile']);
               var isVideo = mediaFile['mediaType'] == 'video';
-              return Stack(
-                children: [
-                  Image.file(thumbnailFile,
-                      width: double.infinity,
-                      height: double.infinity,
-                      fit: BoxFit.cover),
-                  if (isVideo)
-                    Align(
-                      alignment: Alignment.center,
-                      child: const Icon(
-                        Icons.play_circle_filled,
-                        color: Colors.white,
-                        size: 40,
-                      ),
-                    )
-                ],
+              return InkWell(
+                onLongPress: () {
+                  RemoveMediaBottomSheet.show(
+                    context,
+                    () {
+                      removeMedia(index);
+                    },
+                  );
+                },
+                child: Stack(
+                  children: [
+                    Image.file(thumbnailFile,
+                        width: double.infinity,
+                        height: double.infinity,
+                        fit: BoxFit.cover),
+                    if (isVideo)
+                      Align(
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.play_circle_filled,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                      )
+                  ],
+                ),
               );
 
               // Card(
