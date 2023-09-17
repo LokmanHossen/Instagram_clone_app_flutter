@@ -17,7 +17,7 @@ class _BodyviewState extends State<Bodyview> {
   var pageViewList = [
     const HomeViewScreen(),
     SearchPage(),
-    PostView(),
+    const PostView(),
     Container(
       color: Colors.grey,
       alignment: Alignment.center,
