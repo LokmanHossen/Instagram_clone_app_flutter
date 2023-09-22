@@ -231,8 +231,8 @@ class _PostViewState extends State<PostView> {
           style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 255, 66, 53)),
           onPressed: () {},
-          child: Text("Post")),
-      appBar: AppBar(title: Text("Upload Post")),
+          child: const Text("Post")),
+      appBar: AppBar(title: const Text("Upload Post")),
       body: ListView(
         children: [
           Padding(
@@ -240,8 +240,8 @@ class _PostViewState extends State<PostView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Write Something"),
-                SizedBox(
+                const Text("Write Something"),
+                const SizedBox(
                   height: 10,
                 ),
                 TextField(
@@ -253,20 +253,20 @@ class _PostViewState extends State<PostView> {
                         borderSide: BorderSide.none,
                       ),
                       contentPadding:
-                          EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                          const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       hintText: 'Description',
                       filled: true,
-                      fillColor: Color.fromARGB(255, 53, 53, 53)),
+                      fillColor: const Color.fromARGB(255, 53, 53, 53)),
                 )
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           GridView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 crossAxisSpacing: 10,
@@ -284,7 +284,7 @@ class _PostViewState extends State<PostView> {
                           MediaBottomSheet.show(
                               context, pickImgaes, takePicture, pickVideo);
                         },
-                        icon: Icon(Icons.add_a_photo)),
+                        icon: const Icon(Icons.add_a_photo)),
                   );
                 }
                 var mediaFile = _mediaFiles[index - 1];
@@ -303,7 +303,7 @@ class _PostViewState extends State<PostView> {
                           height: double.infinity,
                           fit: BoxFit.cover),
                       if (isVideo)
-                        Align(
+                        const Align(
                             alignment: Alignment.center,
                             child: Icon(Icons.play_circle_filled,
                                 size: 40, color: Colors.white))

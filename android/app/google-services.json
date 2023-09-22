@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "338223207419",
+    "project_id": "instafeed-87fec",
+    "storage_bucket": "instafeed-87fec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338223207419:android:0001cbb5ba81448413b15e",
+        "android_client_info": {
+          "package_name": "com.example.instagram_clone_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb8Y8Br-f9s0jsxLT-TQ13czG9NDobWqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

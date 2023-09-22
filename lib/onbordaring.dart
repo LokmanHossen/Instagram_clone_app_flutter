@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone_app/sign_up.dart';
+import 'package:instagram_clone_app/auth/sign_up.dart';
 
 class OnBordaring extends StatefulWidget {
   const OnBordaring({super.key});

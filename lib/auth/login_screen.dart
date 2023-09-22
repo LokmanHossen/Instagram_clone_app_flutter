@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone_app/sign_up.dart';
+import 'package:instagram_clone_app/auth/sign_up.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
