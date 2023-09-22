@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_app/auth/login_screen.dart';
+import 'package:instagram_clone_app/core/utility/validator.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -9,6 +10,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  var appValidator = AppValodator();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _submitForm() {
@@ -21,46 +24,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       );
     }
-  }
-
-//user validation check
-  String? _validateUser(value) {
-    if (value!.isEmpty) {
-      return 'Please enter a username';
-    }
-    return null;
-  }
-
-  //Email validation check
-  String? _validateEmail(value) {
-    if (value!.isEmpty) {
-      return 'Please enter an email';
-    }
-    RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegExp.hasMatch(value)) {
-      return 'Please enter a valid email';
-    }
-    return null;
-  }
-
-  //Password validation check
-  String? _validatePassword(value) {
-    if (value!.isEmpty) {
-      return 'Please enter Your Password';
-    }
-
-    return null;
-  }
-
-//Phone validation check
-  String? _validatePhoneNumber(value) {
-    if (value!.isEmpty) {
-      return 'Please enter Your phone number';
-    }
-    if (value.length != 10) {
-      return 'Please enter a 10 digit phone number';
-    }
-    return null;
   }
 
   @override
@@ -93,11 +56,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 30,
               ),
               TextFormField(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                style: const TextStyle(color: Colors.white),
-                decoration: _buildInputDecoration("Username", Icons.person),
-                validator: _validateUser,
-              ),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: _buildInputDecoration("Username", Icons.person),
+                  validator: appValidator.validateUser),
               const SizedBox(
                 height: 10,
               ),
@@ -112,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 //     borderRadius: BorderRadius.circular(10),
                 //   ),
                 // ),
-                validator: _validateEmail,
+                validator: appValidator.validateEmail,
               ),
               const SizedBox(
                 height: 10,
@@ -122,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 style: const TextStyle(color: Colors.white),
                 decoration: _buildInputDecoration("Password", Icons.lock),
-                validator: _validatePassword,
+                validator: appValidator.validatePassword,
               ),
               const SizedBox(
                 height: 10,
@@ -138,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 //     borderRadius: BorderRadius.circular(10),
                 //   ),
                 // ),
-                validator: _validatePhoneNumber,
+                validator: appValidator.validatePhoneNumber,
               ),
               const SizedBox(
                 height: 40,
