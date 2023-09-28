@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_app/prensentation/pages/auth/login_screen.dart';
 import 'package:instagram_clone_app/core/utility/validator.dart';
+import 'package:instagram_clone_app/services/auth_services.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -12,13 +13,20 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   var appValidator = AppValodator();
 
+  final authService = AuthService();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _userNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  var isLoading = true;
+
   Future<void> _submitForm() async {
+    setState(() {
+      isLoading = true;
+    });
     if (_formKey.currentState!.validate()) {
       var data = {
         "userName": _userNameController.text,
@@ -26,6 +34,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         "phone": _phoneController.text,
         "password": _passwordController.text,
       };
+      await authService.createUser(data, context);
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -123,7 +135,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textStyle: const TextStyle(fontSize: 24),
                   ),
                   onPressed: _submitForm,
-                  child: const Text('Create'),
+                  child: isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : const Text('Create'),
                 ),
               ),
               const SizedBox(
