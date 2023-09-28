@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_clone_app/prensentation/pages/auth/login_screen.dart';
 import 'package:instagram_clone_app/prensentation/pages/profile/widget/profile_header_card.dart';
 import 'package:instagram_clone_app/prensentation/pages/profile/widget/profile_post_card.dart';
 import 'package:instagram_clone_app/prensentation/pages/profile/widget/profile_reels_card.dart';
@@ -27,10 +29,27 @@ class ProfileView extends StatelessWidget {
                     textColor: Colors.white,
                     label: Text('5'),
                     child: Icon(Icons.notifications))),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.more_vert),
+            PopupMenuButton(
+              child: const Icon(Icons.more_vert),
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem(
+                      child: ListTile(
+                    leading: const Icon(Icons.logout),
+                    title: const Text("Logout"),
+                    onTap: () async {
+                      await FirebaseAuth.instance.signOut();
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: ((context) => const LogInScreen())));
+                    },
+                  ))
+                ];
+              },
             ),
+            // IconButton(
+            //   onPressed: () {},
+            //   icon: const Icon(Icons.more_vert),
+            // ),
           ],
         ),
         body: NestedScrollView(

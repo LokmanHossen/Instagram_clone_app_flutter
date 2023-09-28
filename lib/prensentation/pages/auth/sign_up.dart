@@ -12,8 +12,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   var appValidator = AppValodator();
-
-  final authService = AuthService();
+  var authService = AuthService();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _userNameController = TextEditingController();
@@ -21,7 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  var isLoading = true;
+  var isLoading = false;
 
   Future<void> _submitForm() async {
     setState(() {
@@ -35,6 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         "password": _passwordController.text,
       };
       await authService.createUser(data, context);
+
       setState(() {
         isLoading = false;
       });

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_app/prensentation/pages/auth/sign_up.dart';
+import 'package:instagram_clone_app/services/auth_services.dart';
+
+import '../../../core/utility/validator.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -11,38 +14,52 @@ class LogInScreen extends StatefulWidget {
 class _LogInScreenState extends State<LogInScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void _submitForm() {
+  var appValidator = AppValodator();
+  var authService = AuthService();
+
+  final _emailController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+
+  var isLoading = false;
+
+  Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Form submit Successfully',
-          ),
-        ),
-      );
+      setState(() {
+        isLoading = true;
+      });
+      var data = {
+        "email": _emailController.text,
+        "password": _passwordController.text,
+      };
+      await authService.loginUser(data, context);
+
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
-  //Email validation check
-  String? _validateEmail(value) {
-    if (value!.isEmpty) {
-      return 'Please enter an email';
-    }
-    RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegExp.hasMatch(value)) {
-      return 'Please enter a valid email';
-    }
-    return null;
-  }
+  // //Email validation check
+  // String? _validateEmail(value) {
+  //   if (value!.isEmpty) {
+  //     return 'Please enter an email';
+  //   }
+  //   RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+  //   if (!emailRegExp.hasMatch(value)) {
+  //     return 'Please enter a valid email';
+  //   }
+  //   return null;
+  // }
 
-  //Password validation check
-  String? _validatePassword(value) {
-    if (value!.isEmpty) {
-      return 'Please enter Your Password';
-    }
+  // //Password validation check
+  // String? _validatePassword(value) {
+  //   if (value!.isEmpty) {
+  //     return 'Please enter Your Password';
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -80,21 +97,23 @@ class _LogInScreenState extends State<LogInScreen> {
                   height: 10,
                 ),
                 TextFormField(
+                  controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   style: const TextStyle(color: Colors.white),
                   decoration: _buildInputDecoration("Email", Icons.email),
-                  validator: _validateEmail,
+                  validator: appValidator.validateEmail,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
+                  controller: _passwordController,
                   keyboardType: TextInputType.emailAddress,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   style: const TextStyle(color: Colors.white),
                   decoration: _buildInputDecoration("Password", Icons.lock),
-                  validator: _validatePassword,
+                  validator: appValidator.validatePassword,
                 ),
                 const SizedBox(
                   height: 10,
@@ -111,7 +130,11 @@ class _LogInScreenState extends State<LogInScreen> {
                       textStyle: const TextStyle(fontSize: 24),
                     ),
                     onPressed: _submitForm,
-                    child: const Text('Login'),
+                    child: isLoading
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : const Text('Login'),
                   ),
                 ),
                 const SizedBox(

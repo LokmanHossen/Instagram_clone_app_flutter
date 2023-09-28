@@ -23,4 +23,24 @@ class AuthService {
           });
     }
   }
+
+  Future<void> loginUser(data, context) async {
+    try {
+      final credential = await auth.signInWithEmailAndPassword(
+        email: data['email'],
+        password: data['password'],
+      );
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: ((context) => const Bodyview())));
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Login Failed'),
+              content: Text(e.toString()),
+            );
+          });
+    }
+  }
 }
