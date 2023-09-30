@@ -19,6 +19,7 @@ class MediaPicker {
           'thumbnailFile': File(pickedFile.path).path,
           'mediaType': "image"
         };
+
         mediaJsonList.add(mediaJson);
       }
       return mediaJsonList;
@@ -27,7 +28,12 @@ class MediaPicker {
     }
   }
 
-  takePicture() async {
+  imgPicker() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    return pickedFile!.path;
+  }
+
+  Future<Map<String, dynamic>> takePicture() async {
     final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
@@ -38,13 +44,14 @@ class MediaPicker {
         'thumbnailFile': File(pickedFile.path).path,
         'mediaType': "image"
       };
+
       return mediaJson;
     } else {
-      return null;
+      return {};
     }
   }
 
-  videoPick() async {
+  Future<Map<String, dynamic>> videoPick() async {
     final pickedFile = await picker.pickVideo(source: ImageSource.gallery);
 
     if (pickedFile != null) {
@@ -58,7 +65,7 @@ class MediaPicker {
       };
       return mediaJson;
     } else {
-      return null;
+      return {};
     }
   }
 

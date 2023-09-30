@@ -67,7 +67,7 @@ class _OnBordaringState extends State<OnBordaring> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  SignUpScreen(),
+                        builder: (context) => const SignUpScreen(),
                       ),
                     );
                   } else {

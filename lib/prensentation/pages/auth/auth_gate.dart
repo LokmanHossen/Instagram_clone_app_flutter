@@ -12,28 +12,29 @@ class AuthGate extends StatefulWidget {
 
 class _AuthGateState extends State<AuthGate> {
   FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 0), () {
+    Future.delayed(Duration(seconds: 0), () {
       checkAuthState();
     });
     super.initState();
   }
 
-  void checkAuthState() {
+  Future<void> checkAuthState() async {
     User? user = _auth.currentUser;
     if (user != null) {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: ((context) => const Bodyview())));
+          MaterialPageRoute(builder: ((context) => BodyView())));
     } else {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: ((context) => const SignUpScreen())));
+          MaterialPageRoute(builder: ((context) => SignUpScreen())));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),

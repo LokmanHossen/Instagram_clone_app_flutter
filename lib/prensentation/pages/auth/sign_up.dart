@@ -27,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       isLoading = true;
     });
     if (_formKey.currentState!.validate()) {
-      var data = {
+      Map<String, String> data = {
         "userName": _userNameController.text,
         "email": _emailController.text,
         "phone": _phoneController.text,

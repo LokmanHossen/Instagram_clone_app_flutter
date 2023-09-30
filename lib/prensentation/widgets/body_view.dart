@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_app/prensentation/pages/home/home_view.dart';
 import 'package:instagram_clone_app/prensentation/widgets/nav_bar.dart';
@@ -5,25 +6,22 @@ import 'package:instagram_clone_app/prensentation/pages/profile/profile_view.dar
 import 'package:instagram_clone_app/prensentation/pages/search/search_view.dart';
 import 'package:instagram_clone_app/prensentation/pages/upload_photo/post_view.dart';
 
-class Bodyview extends StatefulWidget {
-  const Bodyview({super.key});
+
+class BodyView extends StatefulWidget {
+  const BodyView({super.key});
 
   @override
-  State<Bodyview> createState() => _BodyviewState();
+  State<BodyView> createState() => _BodyViewState();
 }
 
-class _BodyviewState extends State<Bodyview> {
+class _BodyViewState extends State<BodyView> {
   int currentIndex = 0;
   var pageViewList = [
-    const HomeViewScreen(),
+    HomeView(),
     SearchPage(),
     const PostView(),
-    Container(
-      color: Colors.grey,
-      alignment: Alignment.center,
-      child: const Text('Page 4'),
-    ),
-    const ProfileView(),
+    const Text("Hello"),
+    ProfileView(userId: FirebaseAuth.instance.currentUser!.uid),
   ];
   @override
   Widget build(BuildContext context) {
