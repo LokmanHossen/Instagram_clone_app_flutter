@@ -6,7 +6,6 @@ import 'package:instagram_clone_app/prensentation/pages/profile/profile_view.dar
 import 'package:instagram_clone_app/prensentation/pages/search/search_view.dart';
 import 'package:instagram_clone_app/prensentation/pages/upload_photo/post_view.dart';
 
-
 class BodyView extends StatefulWidget {
   const BodyView({super.key});
 
@@ -21,7 +20,10 @@ class _BodyViewState extends State<BodyView> {
     SearchPage(),
     const PostView(),
     const Text("Hello"),
-    ProfileView(userId: FirebaseAuth.instance.currentUser!.uid),
+
+    const ProfileView(userId: ''),
+
+    // ProfileView(userId: FirebaseAuth.instance.currentUser!.uid ),
   ];
   @override
   Widget build(BuildContext context) {
