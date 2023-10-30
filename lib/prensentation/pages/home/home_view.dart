@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone_app/prensentation/pages/home/widgets/post_card.dart';
 import 'package:instagram_clone_app/prensentation/pages/home/widgets/posts_view.dart';
 import 'package:instagram_clone_app/prensentation/pages/home/widgets/profile_story_card.dart';
 import 'package:instagram_clone_app/prensentation/pages/home/widgets/story_card.dart';
@@ -129,11 +128,11 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(
-                child: PostsView(postData: postData, likeImagesList: likeImagesList),
+                child: PostsView(
+                    postData: postData, likeImagesList: likeImagesList),
               ),
             ],
           ),
         ));
   }
 }
-
